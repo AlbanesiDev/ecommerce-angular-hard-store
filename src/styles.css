@@ -1,0 +1,28 @@
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+
+body {
+  margin: 0;
+}
+
+.bg-black {
+  background-color: black;
+}
+
+.btn-img {
+  all: unset;
+
+  &:focus {
+    outline-offset: 2px;
+    outline: solid 1px var(--orange-400);
+  }
+}
+
+.aspect-ratio-75-67 {
+  aspect-ratio: 75 / 67;
+}
+
+.min-h-calc {
+  min-height: calc(100vh - 80px);
+}
