@@ -6,7 +6,11 @@ export const routes: Routes = [
     loadComponent: () => import("./features/home/pages/home.component"),
   },
   {
-    path: "tienda/:page/:numberInput",
+    path: "tienda/pagina/:numberInput",
+    loadComponent: () => import("./features/shop/pages/shop.component"),
+  },
+  {
+    path: "tienda/pagina/:numberInput/:filterInput",
     loadComponent: () => import("./features/shop/pages/shop.component"),
   },
   {

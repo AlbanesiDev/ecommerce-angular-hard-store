@@ -1,25 +1,28 @@
-import { APP_INITIALIZER, ApplicationConfig, LOCALE_ID } from "@angular/core";
-import {
-  InMemoryScrollingFeature,
-  InMemoryScrollingOptions,
-  provideRouter,
-  withComponentInputBinding,
-  withInMemoryScrolling,
-} from "@angular/router";
-import { provideHttpClient, withFetch, withInterceptors } from "@angular/common/http";
+import { registerLocaleData } from "@angular/common";
+import { provideHttpClient, withInterceptors, withFetch } from "@angular/common/http";
+import { ApplicationConfig, isDevMode, LOCALE_ID, APP_INITIALIZER } from "@angular/core";
 import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
 import { provideClientHydration } from "@angular/platform-browser";
-import { registerLocaleData } from "@angular/common";
-import localeEs from "@angular/common/locales/es-AR";
-
+import {
+  InMemoryScrollingOptions,
+  InMemoryScrollingFeature,
+  withInMemoryScrolling,
+  provideRouter,
+  withComponentInputBinding,
+} from "@angular/router";
+import { provideEffects } from "@ngrx/effects";
+import { MetaReducer, provideStore } from "@ngrx/store";
+import { provideStoreDevtools } from "@ngrx/store-devtools";
+import { MessageService, PrimeNGConfig } from "primeng/api";
 import { routes } from "./app.routes";
-import { loaderInterceptor } from "./core/interceptors/loader.interceptor";
-import { provideFirebase } from "./core/config/firebase.config";
-import { PrimeNGConfig } from "primeng/api";
+import { localStorageMetaReducer, loaderInterceptor, produtErrorHandlerInterceptor, provideFirebase } from "./core";
+import { cartReducer } from "./features/cart";
+import localeEs from "@angular/common/locales/es-AR";
 registerLocaleData(localeEs);
 
 const scrollConfig: InMemoryScrollingOptions = { scrollPositionRestoration: "top", anchorScrolling: "enabled" };
 const inMemoryScrollingFeature: InMemoryScrollingFeature = withInMemoryScrolling(scrollConfig);
+const metaReducers: MetaReducer[] = [localStorageMetaReducer];
 const initializeAppFactory = (primeConfig: PrimeNGConfig) => () => {
   primeConfig.ripple = true;
 };
@@ -27,9 +30,16 @@ const initializeAppFactory = (primeConfig: PrimeNGConfig) => () => {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes, inMemoryScrollingFeature, withComponentInputBinding()),
-    provideHttpClient(withInterceptors([loaderInterceptor]), withFetch()),
+    provideHttpClient(withInterceptors([loaderInterceptor, produtErrorHandlerInterceptor]), withFetch()),
     provideClientHydration(),
     provideAnimationsAsync(),
+    provideStore({ cart: cartReducer }, { metaReducers }),
+    provideStoreDevtools({
+      maxAge: 25,
+      logOnly: !isDevMode(),
+      connectInZone: true,
+    }),
+    provideEffects([]),
     { provide: LOCALE_ID, useValue: "es-AR" },
     {
       provide: APP_INITIALIZER,
@@ -38,5 +48,6 @@ export const appConfig: ApplicationConfig = {
       multi: true,
     },
     provideFirebase,
+    MessageService,
   ],
 };
