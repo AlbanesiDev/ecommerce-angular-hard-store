@@ -1,21 +1,24 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AsyncPipe, CommonModule } from "@angular/common";
-import {
-  ChangeDetectionStrategy,
-  Component,
-  DestroyRef,
-  OnInit,
-  inject,
-  signal,
-} from "@angular/core";
-import { CardGridComponent } from "../../../shared";
-import { HomeService } from "../services/home.service";
-import { SkeletonModule } from "primeng/skeleton";
+import { ChangeDetectionStrategy, Component, OnInit, signal } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { CarouselModule, CarouselResponsiveOptions } from "primeng/carousel";
-import { HomeBanners, HomeProducts } from "../interfaces/home.interface";
-import { LoaderService } from "../../../core/services/loader.service";
-import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { Store } from "@ngrx/store";
 
+import { CarouselModule, CarouselResponsiveOptions } from "primeng/carousel";
+import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { SkeletonModule } from "primeng/skeleton";
+
+import { HomeBanners, HomeProducts, HomeState } from "../interfaces/home.interface";
+import { CardGridComponent } from "../../../shared";
+import {
+  selectBanners,
+  selectBannersFailure,
+  selectBannersLoading,
+  selectProducts,
+  selectProductsFailure,
+  selectProductsLoading,
+} from "../store/home.selectors";
+import * as HomeActions from "../store/home.actions";
 @Component({
   selector: "app-home",
   standalone: true,
@@ -53,7 +56,7 @@ import { ProgressSpinnerModule } from "primeng/progressspinner";
           >
             <ng-template let-product pTemplate="item">
               <div class="h-full mx-2">
-                <app-card-grid [data]="product" />
+                <app-card-grid [data]="product" [loading]="loadingProducts()" />
               </div>
             </ng-template>
           </p-carousel>
@@ -68,17 +71,14 @@ import { ProgressSpinnerModule } from "primeng/progressspinner";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class HomeComponent implements OnInit {
-  public _loaderService = inject(LoaderService);
-  private _homeService = inject(HomeService);
-  private _destroyRef = inject(DestroyRef);
-
   public bannersSig = signal<HomeBanners[]>([]);
   public cardsSig = signal<HomeProducts[]>([]);
-  public bannerErrorMessage = signal<string | undefined>(undefined);
-  public cardErrorMessage = signal<string | undefined>(undefined);
 
-  public isBannersLoading$ = this._loaderService.getLoader("banners");
-  public isProductsLoading$ = this._loaderService.getLoader("products");
+  public loadingBanners = signal<boolean>(false);
+  public loadingProducts = signal<boolean>(false);
+
+  public bannerErrorMessage = signal<unknown>(undefined);
+  public productsErrorMessage = signal<unknown>(undefined);
 
   public responsiveOptions: Array<CarouselResponsiveOptions> = [
     {
@@ -98,29 +98,31 @@ export default class HomeComponent implements OnInit {
     },
   ];
 
-  ngOnInit(): void {
-    this._homeService
-      .getBanners()
-      .pipe(takeUntilDestroyed(this._destroyRef))
-      .subscribe({
-        next: (res) => {
-          this.bannersSig.set(res);
-        },
-        error: (err) => {
-          this.bannerErrorMessage.set(err);
-        },
-      });
+  constructor(private store: Store<{ home: HomeState }>) {
+    this.subscribeToStore(selectBanners, this.bannersSig);
+    this.subscribeToStore(selectProducts, this.cardsSig);
+    this.subscribeToStore(selectBannersLoading, this.loadingBanners);
+    this.subscribeToStore(selectProductsLoading, this.loadingProducts);
+    this.subscribeToStore(selectBannersFailure, this.bannerErrorMessage);
+    this.subscribeToStore(selectProductsFailure, this.productsErrorMessage);
+  }
 
-    this._homeService
-      .getProducts()
-      .pipe(takeUntilDestroyed(this._destroyRef))
-      .subscribe({
-        next: (res) => {
-          this.cardsSig.set(res);
-        },
-        error: (err) => {
-          this.bannerErrorMessage.set(err);
-        },
+  ngOnInit(): void {
+    this.store.dispatch(HomeActions.loadBanners());
+    this.store.dispatch(HomeActions.loadProducts());
+  }
+
+  /**
+   * Subscribes to the provided selector and sets the value to the corresponding signal.
+   * @param selector - The selector to subscribe to.
+   * @param signal - The signal to set the value to.
+   */
+  private subscribeToStore<T>(selector: any, signal: any): void {
+    this.store
+      .select(selector)
+      .pipe(takeUntilDestroyed())
+      .subscribe((res: T) => {
+        signal.set(res);
       });
   }
 }
