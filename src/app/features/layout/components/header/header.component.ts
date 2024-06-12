@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, signal } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostListener, inject, signal } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Store } from "@ngrx/store";
@@ -9,7 +9,6 @@ import { BadgeModule } from "primeng/badge";
 
 import { BrandTitleComponent } from "../../../../shared/components/brand-title/brand-title.component";
 import { SearchbarComponent } from "../../../searchbar/components/searchbar.component";
-import { AuthService } from "../../../../core/services/auth.service";
 import { CartState, selectCartState } from "../../../cart";
 
 @Component({
@@ -22,16 +21,16 @@ import { CartState, selectCartState } from "../../../cart";
     >
       <div class="flex justify-content-between align-items-center w-11 xl:w-8">
         <app-brand-title />
-        <nav class="flex justify-content-around align-items-center navbar" [class.show]="navbarOpen()">
+        <nav class="flex justify-content-around align-items-center navbar" [class.show]="isNavbarOpen()">
           <ul class="flex gap-3  list-none">
-            @for (item of navbar; track $index) {
+            @for (item of headerConfig[0].navbar; track item.id) {
               <li>
                 <p-button
                   styleClass="text-color white-space-nowrap	"
                   severity="secondary"
                   [text]="true"
                   [label]="item.label"
-                  [routerLink]="item.url"
+                  (onClick)="navigate(item.url)"
                 />
               </li>
             }
@@ -44,12 +43,17 @@ import { CartState, selectCartState } from "../../../cart";
             size="large"
             severity="secondary"
             [text]="true"
-            (onClick)="buttons[0].action()"
+            (onClick)="navigate(headerConfig[0].buttons[0].url)"
           >
-            @if (badgeSig() > 0) {
-              <i pBadge class="pi {{ buttons[0].icon }} text-xl" severity="danger" [value]="badgeSig()"></i>
+            @if (badgeCount() > 0) {
+              <i
+                pBadge
+                class="pi {{ headerConfig[0].buttons[0].icon }} text-xl"
+                severity="danger"
+                [value]="badgeCount()"
+              ></i>
             } @else {
-              <i class="pi {{ buttons[0].icon }} text-xl"></i>
+              <i class="pi {{ headerConfig[0].buttons[0].icon }} text-xl"></i>
             }
           </p-button>
           <p-button
@@ -57,9 +61,9 @@ import { CartState, selectCartState } from "../../../cart";
             size="large"
             severity="secondary"
             [text]="true"
-            (onClick)="buttons[1].action()"
+            (onClick)="navigate(headerConfig[0].buttons[1].url)"
           >
-            <i class="pi {{ buttons[1].icon }} text-xl"></i>
+            <i class="pi {{ headerConfig[0].buttons[1].icon }} text-xl"></i>
           </p-button>
           <p-button
             styleClass="text-color lg:hidden"
@@ -67,7 +71,7 @@ import { CartState, selectCartState } from "../../../cart";
             severity="secondary"
             icon="pi pi-bars"
             [text]="true"
-            (onClick)="navbarOpen.set(navbarOpen() ? false : true)"
+            (onClick)="isNavbarOpen.set(isNavbarOpen() ? false : true)"
           />
         </div>
       </div>
@@ -104,39 +108,22 @@ import { CartState, selectCartState } from "../../../cart";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  // public modalService: ModalService = inject(ModalService);
-  public authService: AuthService = inject(AuthService);
-  public router: Router = inject(Router);
-  public cdr = inject(ChangeDetectorRef);
-  public badgeSig = signal<number>(0);
+  private router: Router = inject(Router);
 
-  public navbarOpen = signal<boolean>(false);
-
-  public navbar: Array<{ label: string; url: string }> = [
+  private isAuthenticated = signal<boolean>(false);
+  public isNavbarOpen = signal<boolean>(false);
+  public badgeCount = signal<number>(0);
+  public headerConfig = [
     {
-      label: "Inicio",
-      url: "/",
-    },
-    {
-      label: "Tienda",
-      url: "/tienda/pagina/1",
-    },
-    {
-      label: "Armá tu pc",
-      url: "/armar-pc",
-    },
-  ];
-
-  public buttons: Array<{ label: string; icon: string; action: () => void }> = [
-    {
-      label: "bag",
-      icon: "pi-shopping-cart",
-      action: () => this.router.navigateByUrl("/carrito"),
-    },
-    {
-      label: "auth",
-      icon: "pi-user",
-      action: () => this.profile(),
+      navbar: [
+        { id: 0, label: "Inicio", url: "/" },
+        { id: 1, label: "Tienda", url: "/tienda/pagina/1" },
+        { id: 2, label: "Armá tu pc", url: "/armar-pc" },
+      ],
+      buttons: [
+        { label: "bag", icon: "pi-shopping-cart", url: "/carrito" },
+        { label: "auth", icon: "pi-user", url: this.getProfileUrl() },
+      ],
     },
   ];
 
@@ -145,11 +132,34 @@ export class HeaderComponent {
       .select(selectCartState)
       .pipe(takeUntilDestroyed())
       .subscribe((products) => {
-        this.badgeSig.set(products.products.length);
+        this.badgeCount.set(products.products.length);
       });
   }
 
-  private profile(): void {
-    //  auth ? go to profile : go to signIn
+  /**
+   * Adjusts navbar visibility based on window size
+   */
+  @HostListener("window:resize", ["$event"])
+  private adjustNavbar() {
+    if (window.innerWidth > 992) {
+      this.isNavbarOpen.set(false);
+    }
+  }
+
+  /**
+   * Navigates to the specified URL
+   * @param url URL to navigate to
+   */
+  public navigate(url: string): void {
+    this.isNavbarOpen.set(false);
+    this.router.navigateByUrl(url);
+  }
+
+  /**
+   * Returns the appropriate profile URL based on authentication status
+   * @returns Profile URL
+   */
+  private getProfileUrl(): string {
+    return this.isAuthenticated() ? "/perfil" : "/auth/iniciar-sesion";
   }
 }
