@@ -1,0 +1,44 @@
+[
+  {
+    "id": 0,
+    "src": "/assets/images/home-carousel/0-desktop.png",
+    "srcset": ["/assets/images/home-carousel/0-mobile.webp 300w, /assets/images/home-carousel/0-desktop.webp 600w"],
+    "alt": "",
+    "url": "/armar-pc"
+  },
+  {
+    "id": 1,
+    "src": "/assets/images/home-carousel/1-desktop.png",
+    "srcset": ["/assets/images/home-carousel/1-mobile.webp 300w, /assets/images/home-carousel/1-desktop.webp 600w"],
+    "alt": "",
+    "url": "/tienda/pagina-1?marca=asus"
+  },
+  {
+    "id": 2,
+    "src": "/assets/images/home-carousel/2-desktop.png",
+    "srcset": ["/assets/images/home-carousel/2-mobile.webp 300w,  /assets/images/home-carousel/2-desktop.webp 600w"],
+    "alt": "",
+    "url": "/tienda/pagina-1?categoria=placas-de-video"
+  },
+  {
+    "id": 3,
+    "src": "/assets/images/home-carousel/3-desktop.png",
+    "srcset": ["/assets/images/home-carousel/3-mobile.webp 300w, /assets/images/home-carousel/3-desktop.webp 600w"],
+    "alt": "",
+    "url": "/tienda/pagina-1?marca=cooler-master"
+  },
+  {
+    "id": 4,
+    "src": "/assets/images/home-carousel/4-desktop.png",
+    "srcset": ["/assets/images/home-carousel/4-mobile.webp 300w, /assets/images/home-carousel/4-desktop.webp 600w"],
+    "alt": "",
+    "url": "/tienda/pagina-1?categoria=memorias-ram?marca=kingstone"
+  },
+  {
+    "id": 5,
+    "src": "/assets/images/home-carousel/5-desktop.png",
+    "srcset": ["/assets/images/home-carousel/5-mobile.webp 300w, /assets/images/home-carousel/5-desktop.webp 600w"],
+    "alt": "",
+    "url": "/tienda/pagina-1?categoria=sillas-gamer?marca=corsair"
+  }
+]

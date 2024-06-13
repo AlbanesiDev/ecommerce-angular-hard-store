@@ -1,0 +1,646 @@
+[
+  {
+    "id": 0,
+    "title": "productos destacados",
+    "interval": 3500,
+    "products": [
+      {
+        "title": "Notebook Gamer Lenovo Legion 5 15ACH6H WQHD 2K 15.6\" R5 5600H 16GB (2x8GB) 512GB NVME RTX 3060 6GB W11S 165Hz",
+        "id_product": 15062,
+        "id_category": 5,
+        "id_subcategory": 58,
+        "id_brand": 55,
+        "price_special": 1199990,
+        "price_list": 1679952,
+        "discount_settlement": null,
+        "images": [
+          {
+            "url": "38400_Notebook_Gamer_Lenovo_Legion_5_15ACH6H_WQHD_2K_15.6__R5_5600H_16GB__2x8GB__512GB_NVME_RTX_3060_6GB_W11S_165Hz_2be15985",
+            "id": 1
+          },
+          {
+            "url": "38401_Notebook_Gamer_Lenovo_Legion_5_15ACH6H_WQHD_2K_15.6__R5_5600H_16GB__2x8GB__512GB_NVME_RTX_3060_6GB_W11S_165Hz_3066b268",
+            "id": 2
+          },
+          {
+            "url": "38402_Notebook_Gamer_Lenovo_Legion_5_15ACH6H_WQHD_2K_15.6__R5_5600H_16GB__2x8GB__512GB_NVME_RTX_3060_6GB_W11S_165Hz_b6f1bf9f",
+            "id": 3
+          },
+          {
+            "url": "38403_Notebook_Gamer_Lenovo_Legion_5_15ACH6H_WQHD_2K_15.6__R5_5600H_16GB__2x8GB__512GB_NVME_RTX_3060_6GB_W11S_165Hz_67cd131c",
+            "id": 4
+          }
+        ],
+        "saleable": 1,
+        "stock": 5,
+        "main_code": [
+          "SKU: 82JU018BAR"
+        ],
+        "warranty": 12,
+        "official_warranty": 0,
+        "vat": 10.5,
+        "price_special_combo": null,
+        "price_list_combo": null,
+        "url_search": "notebook_gamer_lenovo_legion_5_15ach6h_wqhd_2k_15_6_r5_5600h_16gb_2x8gb_512gb_nvme_rtx_3060_6gb_w11s_165hz"
+      },
+      {
+        "title": "Procesador Intel Core i5 14400F 4.7GHz Turbo Socket 1700 Raptor Lake",
+        "id_product": 15241,
+        "id_category": 5,
+        "id_subcategory": 48,
+        "id_brand": 20,
+        "price_special": 304600,
+        "price_list": 426431,
+        "discount_settlement": null,
+        "images": [
+          {
+            "url": "38616_Procesador_Intel_Core_i5_14400F_4.7GHz_Turbo_Socket_1700_Raptor_Lake_b51753f7",
+            "id": 1
+          }
+        ],
+        "saleable": 1,
+        "stock": 5,
+        "main_code": [
+          "SKU: BX8071514400F"
+        ],
+        "warranty": 12,
+        "official_warranty": 0,
+        "vat": 10.5,
+        "price_special_combo": null,
+        "price_list_combo": null,
+        "url_search": "procesador_intel_core_i5_14400f_4_7ghz_turbo_socket_1700_raptor_lake"
+      },
+      {
+        "title": "Placa de Video MSI GeForce RTX 4090 24GB GDDR6X GAMING X TRIO",
+        "id_product": 14155,
+        "id_category": 5,
+        "id_subcategory": 6,
+        "id_brand": 9,
+        "price_special": 2699950,
+        "price_list": 3779854,
+        "discount_settlement": null,
+        "images": [
+          {
+            "url": "35196_Placa_de_Video_MSI_GeForce_RTX_4090_24GB_GDDR6X_GAMING_X_TRIO_e3f3219f",
+            "id": 1
+          },
+          {
+            "url": "34738_Placa_de_Video_MSI_GeForce_RTX_4090_24GB_GDDR6X_GAMING_X_TRIO_8df2631a",
+            "id": 2
+          },
+          {
+            "url": "34739_Placa_de_Video_MSI_GeForce_RTX_4090_24GB_GDDR6X_GAMING_X_TRIO_9297c563",
+            "id": 3
+          },
+          {
+            "url": "34740_Placa_de_Video_MSI_GeForce_RTX_4090_24GB_GDDR6X_GAMING_X_TRIO_160aaa1b",
+            "id": 4
+          },
+          {
+            "url": "34741_Placa_de_Video_MSI_GeForce_RTX_4090_24GB_GDDR6X_GAMING_X_TRIO_7722cfa6",
+            "id": 5
+          },
+          {
+            "url": "34742_Placa_de_Video_MSI_GeForce_RTX_4090_24GB_GDDR6X_GAMING_X_TRIO_b47243c7",
+            "id": 6
+          },
+          {
+            "url": "34743_Placa_de_Video_MSI_GeForce_RTX_4090_24GB_GDDR6X_GAMING_X_TRIO_85446d08",
+            "id": 7
+          }
+        ],
+        "saleable": 1,
+        "stock": 5,
+        "main_code": [
+          "SKU: GeForce-RTX-4090-GAMING-X-TRIO-24G"
+        ],
+        "warranty": 12,
+        "official_warranty": 0,
+        "vat": 10.5,
+        "price_special_combo": null,
+        "price_list_combo": null,
+        "url_search": "placa_de_video_msi_geforce_rtx_4090_24gb_gddr6x_gaming_x_trio"
+      },
+      {
+        "title": "Notebook Dell Inspiron 3525 IPS FHD 15.6\" Ryzen 5 5625U 8GB 256GB SSD NVMe W11 Home 120Hz",
+        "id_product": 14492,
+        "id_category": 5,
+        "id_subcategory": 58,
+        "id_brand": 124,
+        "price_special": 844330,
+        "price_list": 1393054,
+        "discount_settlement": null,
+        "images": [
+          {
+            "url": "37673_Notebook_Dell_Inspiron_3525_IPS_FHD_15.6__Ryzen_5_5625U_8GB_256GB_SSD_NVMe_W11_Home_120Hz_31bafa22",
+            "order": 1
+          },
+          {
+            "url": "36326_Notebook_Dell_Inspiron_3525_IPS_FHD_15.6__Ryzen_5_5625U_8GB_256GB_SSD_NVMe_W11_Home_120Hz_ee96b7ca",
+            "order": 2
+          },
+          {
+            "url": "36329_Notebook_Dell_Inspiron_3525_IPS_FHD_15.6__Ryzen_5_5625U_8GB_256GB_SSD_NVMe_W11_Home_120Hz_02fca444",
+            "order": 3
+          },
+          {
+            "url": "36328_Notebook_Dell_Inspiron_3525_IPS_FHD_15.6__Ryzen_5_5625U_8GB_256GB_SSD_NVMe_W11_Home_120Hz_59d1be9b",
+            "order": 4
+          },
+          {
+            "url": "36327_Notebook_Dell_Inspiron_3525_IPS_FHD_15.6__Ryzen_5_5625U_8GB_256GB_SSD_NVMe_W11_Home_120Hz_d525b46f",
+            "order": 5
+          }
+        ],
+        "saleable": 1,
+        "stock": 3,
+        "main_code": [
+          "SKU: I3525_LCR58256SW11S_523"
+        ],
+        "warranty": 12,
+        "official_warranty": 0,
+        "vat": 10.5,
+        "price_special_combo": null,
+        "price_list_combo": null,
+        "url_search": "notebook_dell_inspiron_3525_ips_fhd_15_6_ryzen_5_5625u_8gb_256gb_ssd_nvme_w11_home_120hz"
+      },
+      {
+        "title": "Silla Gamer Corsair T3 Rush Fabric Carbon (Peso MAX. 120kg)",
+        "id_product": 14658,
+        "id_category": 5,
+        "id_subcategory": 66,
+        "id_brand": 14,
+        "price_special": 389999,
+        "price_list": 545988,
+        "discount_settlement": null,
+        "images": [
+          {
+            "url": "36811_Silla_Gamer_Corsair_T3_Rush_Fabric_Carbon__Peso_MAX._120kg__88bef6b4",
+            "id": 1
+          },
+          {
+            "url": "36812_Silla_Gamer_Corsair_T3_Rush_Fabric_Carbon__Peso_MAX._120kg__b76d4f96",
+            "id": 2
+          },
+          {
+            "url": "36813_Silla_Gamer_Corsair_T3_Rush_Fabric_Carbon__Peso_MAX._120kg__0bea110c",
+            "id": 3
+          }
+        ],
+        "saleable": 1,
+        "stock": 5,
+        "main_code": [
+          "SKU: CF-9010057-WW"
+        ],
+        "warranty": 12,
+        "official_warranty": 0,
+        "vat": 21,
+        "price_special_combo": null,
+        "price_list_combo": null,
+        "url_search": "silla_gamer_corsair_t3_rush_fabric_carbon_peso_max_120kg"
+      },
+      {
+        "title": "SMART TV SAMSUNG 50'' NEO QLED 4K QN90B 144Hz Freesync",
+        "id_product": 14079,
+        "id_category": 5,
+        "id_subcategory": 79,
+        "id_brand": 23,
+        "price_special": 1178850,
+        "price_list": 1944976,
+        "discount_settlement": null,
+        "images": [
+          {
+            "url": "38646_SMART_TV_SAMSUNG_50___NEO_QLED_4K_QN90B_144Hz_Freesync_ac519834",
+            "order": 1
+          },
+          {
+            "url": "34425_SMART_TV_SAMSUNG_50___NEO_QLED_4K_QN90B_144Hz_Freesync_27c35e94",
+            "order": 2
+          },
+          {
+            "url": "34426_SMART_TV_SAMSUNG_50___NEO_QLED_4K_QN90B_144Hz_Freesync_f99b078d",
+            "order": 3
+          },
+          {
+            "url": "34427_SMART_TV_SAMSUNG_50___NEO_QLED_4K_QN90B_144Hz_Freesync_7589027c",
+            "order": 4
+          },
+          {
+            "url": "34428_SMART_TV_SAMSUNG_50___NEO_QLED_4K_QN90B_144Hz_Freesync_12a7a0ad",
+            "order": 5
+          }
+        ],
+        "saleable": 1,
+        "stock": 5,
+        "main_code": [
+          "P/N: QN50QN90BAGCZB"
+        ],
+        "warranty": 12,
+        "official_warranty": 1,
+        "vat": 21,
+        "price_special_combo": null,
+        "price_list_combo": null,
+        "url_search": "smart_tv_samsung_50_neo_qled_4k_qn90b_144hz_freesync"
+      },
+      {
+        "title": "Cooler CPU ASUS ROG RYUJIN 3 360 Evangelion EVA-02 Edition ARGB LCD",
+        "id_product": 15187,
+        "id_category": 700,
+        "id_subcategory": 10700,
+        "id_brand": 8,
+        "price_special": 792450,
+        "price_list": 1109408,
+        "discount_settlement": null,
+        "images": [
+          {
+            "url": "38534_Cooler_CPU_ASUS_ROG_RYUJIN_3_360_Evangelion_EVA-02_Edition_ARGB_LCD_c4f0a29a",
+            "id": 1
+          },
+          {
+            "url": "38535_Cooler_CPU_ASUS_ROG_RYUJIN_3_360_Evangelion_EVA-02_Edition_ARGB_LCD_7b26b7a3",
+            "id": 2
+          },
+          {
+            "url": "38536_Cooler_CPU_ASUS_ROG_RYUJIN_3_360_Evangelion_EVA-02_Edition_ARGB_LCD_808b99cf",
+            "id": 3
+          },
+          {
+            "url": "38537_Cooler_CPU_ASUS_ROG_RYUJIN_3_360_Evangelion_EVA-02_Edition_ARGB_LCD_f2935f61",
+            "id": 4
+          }
+        ],
+        "saleable": 1,
+        "stock": 3,
+        "main_code": [
+          "SKU: 90RC00L3-M0AAY0"
+        ],
+        "warranty": 12,
+        "official_warranty": 0,
+        "vat": 21,
+        "price_special_combo": null,
+        "price_list_combo": null,
+        "url_search": "cooler_cpu_asus_rog_ryujin_3_360_evangelion_eva_02_edition_argb_lcd"
+      },
+      {
+        "title": "Teclado Logitech MX Mechanical Inalámbrico Bluetooth Full size",
+        "id_product": 15628,
+        "id_category": 1100,
+        "id_subcategory": 10801,
+        "id_brand": 17,
+        "price_special": 169050,
+        "price_list": 236665,
+        "discount_settlement": null,
+        "images": [
+          {
+            "url": "39622_Teclado_Logitech_MX_Mechanical_Inal__mbrico_Bluetooth_Full_size_df0794ca",
+            "id": 1
+          },
+          {
+            "url": "39623_Teclado_Logitech_MX_Mechanical_Inal__mbrico_Bluetooth_Full_size_b824eb85",
+            "id": 2
+          }
+        ],
+        "saleable": 1,
+        "stock": 5,
+        "main_code": [
+          "SKU: 920-010845"
+        ],
+        "warranty": 6,
+        "official_warranty": 0,
+        "vat": 10.5,
+        "price_special_combo": null,
+        "price_list_combo": null,
+        "url_search": "teclado_logitech_mx_mechanical_inal_mbrico_bluetooth_full_size"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "title": "ultimos ingresados",
+    "interval": 4000,
+    "products": [
+      {
+        "title": "Procesador AMD Ryzen 5 8600G 5.0GHz AM5",
+        "id_product": 15206,
+        "id_category": 5,
+        "id_subcategory": 27,
+        "id_brand": 19,
+        "price_special": 302000,
+        "price_list": 422792,
+        "discount_settlement": null,
+        "images": [
+          {
+            "url": "38449_Procesador_AMD_Ryzen_5_8600G_5.0GHz_AM5_f1bd9500",
+            "id": 1
+          },
+          {
+            "url": "38450_Procesador_AMD_Ryzen_5_8600G_5.0GHz_AM5_aca0003f",
+            "id": 2
+          }
+        ],
+        "saleable": 1,
+        "stock": 3,
+        "main_code": [
+          "SKU: 100-100001237BOX"
+        ],
+        "warranty": 36,
+        "official_warranty": 0,
+        "vat": 10.5,
+        "price_special_combo": null,
+        "price_list_combo": null,
+        "url_search": "procesador_amd_ryzen_5_8600g_5_0ghz_am5"
+      },
+      {
+        "title": "Fuente Cougar 750W 80 Plus Gold GEC750",
+        "id_product": 15081,
+        "id_category": 5,
+        "id_subcategory": 34,
+        "id_brand": 28,
+        "price_special": 123550,
+        "price_list": 172967,
+        "discount_settlement": null,
+        "images": [
+          {
+            "url": "39112_Fuente_Cougar_750W_80_Plus_Gold_GEC750_1d2f2d18",
+            "id": 1
+          },
+          {
+            "url": "38187_Fuente_Cougar_750W_80_Plus_Gold_GEC750_654e69c0",
+            "id": 2
+          },
+          {
+            "url": "38188_Fuente_Cougar_750W_80_Plus_Gold_GEC750_75857cf1",
+            "id": 3
+          }
+        ],
+        "saleable": 1,
+        "stock": 5,
+        "main_code": [
+          "SKU: 31GC075.0006P"
+        ],
+        "warranty": 24,
+        "official_warranty": 1,
+        "vat": 21,
+        "price_special_combo": null,
+        "price_list_combo": null,
+        "url_search": "fuente_cougar_750w_80_plus_gold_gec750"
+      },
+      {
+        "title": "Monitor LG 24'' 24MK430H-B 75Hz IPS Full HD FreeSync HDMI",
+        "id_product": 8495,
+        "id_category": 5,
+        "id_subcategory": 5,
+        "id_brand": 38,
+        "price_special": 141180,
+        "price_list": 197648,
+        "discount_settlement": null,
+        "images": [
+          {
+            "url": "13283_Monitor_LG_24___24MK430H-B_75Hz_IPS_Full_HD_FreeSync_HDMI_13e39792",
+            "id": 1
+          },
+          {
+            "url": "13284_Monitor_LG_24___24MK430H-B_75Hz_IPS_Full_HD_FreeSync_HDMI_7420ec90",
+            "id": 2
+          },
+          {
+            "url": "13285_Monitor_LG_24___24MK430H-B_75Hz_IPS_Full_HD_FreeSync_HDMI_4e47f690",
+            "id": 3
+          },
+          {
+            "url": "13286_Monitor_LG_24___24MK430H-B_75Hz_IPS_Full_HD_FreeSync_HDMI_f1cbcbaf",
+            "id": 4
+          },
+          {
+            "url": "13287_Monitor_LG_24___24MK430H-B_75Hz_IPS_Full_HD_FreeSync_HDMI_eff9dc41",
+            "id": 5
+          }
+        ],
+        "saleable": 1,
+        "stock": 5,
+        "main_code": [
+          "SKU: 24MK430H-B"
+        ],
+        "warranty": 12,
+        "official_warranty": 0,
+        "busca_en_ml": "monitor lg",
+        "vat": 21,
+        "price_special_combo": null,
+        "price_list_combo": null,
+        "url_search": "monitor_lg_24_24mk430h_b_75hz_ips_full_hd_freesync_hdmi"
+      },
+      {
+        "title": "Cooler CPU DeepCool AK620 DIGITAL Display ",
+        "id_product": 15102,
+        "id_category": 5,
+        "id_subcategory": 36,
+        "id_brand": 76,
+        "price_special": 118150,
+        "price_list": 165407,
+        "discount_settlement": null,
+        "images": [
+          {
+            "url": "38210_Cooler_CPU_DeepCool_AK620_DIGITAL_Display__5e7bf580",
+            "id": 1
+          },
+          {
+            "url": "38211_Cooler_CPU_DeepCool_AK620_DIGITAL_Display__3a1299ae",
+            "id": 2
+          },
+          {
+            "url": "38212_Cooler_CPU_DeepCool_AK620_DIGITAL_Display__e9d8a8c2",
+            "id": 3
+          }
+        ],
+        "saleable": 1,
+        "stock": 5,
+        "main_code": [
+          "SKU: R-AK620-BKADMN-G"
+        ],
+        "warranty": 12,
+        "official_warranty": 0,
+        "vat": 21,
+        "price_special_combo": null,
+        "price_list_combo": null,
+        "url_search": "cooler_cpu_deepcool_ak620_digital_display"
+      },
+      {
+        "title": "Placa de Video XFX Radeon RX 6650 XT BLACK 8GB GDDR6 SPEEDSTER MERC 308",
+        "id_product": 14673,
+        "id_category": 500,
+        "id_subcategory": 10500,
+        "id_brand": 37,
+        "price_special": 362900,
+        "price_list": 508050,
+        "discount_settlement": null,
+        "images": [
+          {
+            "url": "36860_Placa_de_Video_XFX_Radeon_RX_6650_XT_BLACK_8GB_GDDR6_SPEEDSTER_MERC_308_ebaa6a68",
+            "id": 1
+          },
+          {
+            "url": "36861_Placa_de_Video_XFX_Radeon_RX_6650_XT_BLACK_8GB_GDDR6_SPEEDSTER_MERC_308_707b9226",
+            "id": 2
+          },
+          {
+            "url": "36862_Placa_de_Video_XFX_Radeon_RX_6650_XT_BLACK_8GB_GDDR6_SPEEDSTER_MERC_308_c4eb6469",
+            "id": 3
+          },
+          {
+            "url": "36863_Placa_de_Video_XFX_Radeon_RX_6650_XT_BLACK_8GB_GDDR6_SPEEDSTER_MERC_308_4bb85367",
+            "id": 4
+          },
+          {
+            "url": "36864_Placa_de_Video_XFX_Radeon_RX_6650_XT_BLACK_8GB_GDDR6_SPEEDSTER_MERC_308_ffc5ce9f",
+            "id": 5
+          }
+        ],
+        "saleable": 1,
+        "stock": 5,
+        "main_code": [
+          "SKU: RX-665X8TBDY"
+        ],
+        "warranty": 12,
+        "official_warranty": 0,
+        "vat": 10.5,
+        "price_special_combo": null,
+        "price_list_combo": null,
+        "url_search": "placa_de_video_xfx_radeon_rx_6650_xt_black_8gb_gddr6_speedster_merc_308"
+      },
+      {
+        "title": "Kit Mother ASUS TUF B660M-PLUS WIFI D4 + Procesador Intel Core I5 12400F 4.4GHz Turbo (Sin Video Integrado)",
+        "id_product": 15347,
+        "id_category": 55,
+        "id_subcategory": 59,
+        "id_brand": 130,
+        "price_special": 427980,
+        "price_list": 599160,
+        "discount_settlement": null,
+        "images": [
+          {
+            "url": "0_Kit_Mother_ASUS_TUF_B660M-PLUS_WIFI_D4___Procesador_Intel_Core_I5_12400F_4.4GHz_Turbo__Sin_Video_Integrado__4dda45f0",
+            "id": 0
+          },
+          {
+            "url": "38640_Procesador_Intel_Core_i5_12400F_4.4GHz_Turbo_Socket_1700_Alder_Lake_d61e2fc4",
+            "id": 2
+          },
+          {
+            "url": "32252_Mother_ASUS_TUF_GAMING_B660M-PLUS_WIFI_D4_75faf914",
+            "id": 2
+          },
+          {
+            "url": "29678_Procesador_Intel_Core_i5_12400F_4.4GHz_Turbo_Socket_1700_Alder_Lake_0900c3ff",
+            "id": 3
+          },
+          {
+            "url": "32253_Mother_ASUS_TUF_GAMING_B660M-PLUS_WIFI_D4_807675a0",
+            "id": 3
+          },
+          {
+            "url": "29679_Procesador_Intel_Core_i5_12400F_4.4GHz_Turbo_Socket_1700_Alder_Lake_ac34b205",
+            "id": 4
+          },
+          {
+            "url": "32254_Mother_ASUS_TUF_GAMING_B660M-PLUS_WIFI_D4_84a71f68",
+            "id": 4
+          },
+          {
+            "url": "32255_Mother_ASUS_TUF_GAMING_B660M-PLUS_WIFI_D4_6b76a29c",
+            "id": 5
+          },
+          {
+            "url": "32256_Mother_ASUS_TUF_GAMING_B660M-PLUS_WIFI_D4_10248be9",
+            "id": 6
+          }
+        ],
+        "saleable": 1,
+        "stock": 5,
+        "main_code": [
+          "SKU: BX8071512400F",
+          "SKU: TUF GAMING B660M-PLUS WIFI D4"
+        ],
+        "warranty": 6,
+        "official_warranty": 0,
+        "vat": 0,
+        "price_special_combo": 427980,
+        "price_list_combo": 599160.016799664,
+        "url_search": "kit_mother_asus_tuf_b660m_plus_wifi_d4_procesador_intel_core_i5_12400f_4_4ghz_turbo_sin_video_integrado"
+      },
+      {
+        "title": "Memoria Team DDR5 32GB (2x16GB) 6400MHz T-Force Delta RGB Black CL40 Intel XMP 3.0",
+        "id_product": 12808,
+        "id_category": 5,
+        "id_subcategory": 15,
+        "id_brand": 99,
+        "price_special": 173250,
+        "price_list": 242545,
+        "discount_settlement": null,
+        "images": [
+          {
+            "url": "29474_Memoria_Team_DDR5_32GB__2x16GB__6400MHz_T-Force_Delta_RGB_Black_CL40_Intel_XMP_3.0_884828e7",
+            "id": 1
+          },
+          {
+            "url": "29475_Memoria_Team_DDR5_32GB__2x16GB__6400MHz_T-Force_Delta_RGB_Black_CL40_Intel_XMP_3.0_3e9ff9b6",
+            "id": 2
+          }
+        ],
+        "saleable": 1,
+        "stock": 5,
+        "main_code": [
+          "SKU: FF3D532G6400HC40BDC01"
+        ],
+        "warranty": 12,
+        "official_warranty": 0,
+        "vat": 10.5,
+        "price_special_combo": null,
+        "price_list_combo": null,
+        "url_search": "memoria_team_ddr5_32gb_2x16gb_6400mhz_t_force_delta_rgb_black_cl40_intel_xmp_3_0"
+      },
+      {
+        "title": "Microfono Logitech Blue Yeti Shadow Grey Condensador Nano USB",
+        "id_product": 11197,
+        "id_category": 1100,
+        "id_subcategory": 10807,
+        "id_brand": 17,
+        "price_special": 141110,
+        "price_list": 197550,
+        "discount_settlement": null,
+        "images": [
+          {
+            "url": "22975_Microfono_Logitech_Blue_Yeti_Shadow_Grey_Condensador_Nano_USB_eff7983b",
+            "id": 1
+          },
+          {
+            "url": "22976_Microfono_Logitech_Blue_Yeti_Shadow_Grey_Condensador_Nano_USB_34c6b189",
+            "id": 2
+          },
+          {
+            "url": "22977_Microfono_Logitech_Blue_Yeti_Shadow_Grey_Condensador_Nano_USB_ebb24655",
+            "id": 3
+          },
+          {
+            "url": "22978_Microfono_Logitech_Blue_Yeti_Shadow_Grey_Condensador_Nano_USB_1ae1c85d",
+            "id": 4
+          },
+          {
+            "url": "22979_Microfono_Logitech_Blue_Yeti_Shadow_Grey_Condensador_Nano_USB_75bd13c0",
+            "id": 5
+          }
+        ],
+        "saleable": 1,
+        "stock": 5,
+        "main_code": [
+          "SKU: 988-000508"
+        ],
+        "warranty": 6,
+        "official_warranty": 0,
+        "vat": 21,
+        "price_special_combo": null,
+        "price_list_combo": null,
+        "url_search": "microfono_logitech_blue_yeti_shadow_grey_condensador_nano_usb"
+      }
+    ]
+  }
+]
