@@ -1,0 +1,125 @@
+<div class="flex justify-content-center align-items-center px-2">
+  <div class="card w-30rem shadow-6 p-6">
+    <form [formGroup]="registerForm">
+      <h2 class="text-4xl mb-6">Registrarse</h2>
+      <div class="flex flex-column justify-content-between gap-4">
+        <div class="flex flex-column justify-content-between gap-5">
+          <div>
+            <span class="w-full p-float-label mb-2">
+              <input
+                pInputText
+                type="text"
+                id="email"
+                name="email"
+                class="w-full h-3rem"
+                formControlName="email"
+                autocomplete="email"
+              />
+              <label for="email">Correo electrónico</label>
+            </span>
+            @if (registerForm.get("email")?.invalid && registerForm.get("email")?.touched) {
+              <small class="p-error block" *ngIf="registerForm.get('email')?.errors?.['required']">
+                El correo electronico es obligatorio.
+              </small>
+              <small class="p-error block" *ngIf="registerForm.get('email')?.errors?.['email']"
+                >Correo electronico invalido.</small
+              >
+              <small class="p-error block" *ngIf="registerForm.get('email')?.errors?.['']">
+                El email que intentas utilizar ya se encuentra registrado.
+              </small>
+            }
+          </div>
+          <div>
+            <span class="w-full p-float-label mb-2">
+              <p-password
+                type="password"
+                inputId="password"
+                name="password"
+                class="w-full h-3rem"
+                styleClass="border-orange-500 "
+                formControlName="password"
+                autocomplete="current-password"
+                [toggleMask]="true"
+                [feedback]="true"
+                [style]="{ width: '100%' }"
+                [inputStyle]="{ width: '100%', height: '3rem' }"
+              >
+                <ng-template pTemplate="header">
+                  <h6>Escribe una contraseña</h6>
+                </ng-template>
+                <ng-template pTemplate="footer">
+                  <p-divider></p-divider>
+                  <p class="mt-2">Se recomienda utilizar:</p>
+                  <ul class="pl-2 mt-0 list-none">
+                    <li>
+                      <i
+                        class="pi mr-2"
+                        [ngClass]="validator ? 'pi-check text-green-500' : 'pi-times text-red-500'"
+                      ></i>
+                      <span>Al menos una minúscula</span>
+                    </li>
+                    <li>
+                      <i
+                        class="pi mr-2"
+                        [ngClass]="validator ? 'pi-check text-green-500' : 'pi-times text-red-500'"
+                      ></i>
+                      <span>Al menos una mayúscula</span>
+                    </li>
+                    <li>
+                      <i
+                        class="pi mr-2"
+                        [ngClass]="validator ? 'pi-check text-green-500' : 'pi-times text-red-500'"
+                      ></i>
+                      <span>Al menos un número</span>
+                    </li>
+                    <li>
+                      <i
+                        class="pi mr-2"
+                        [ngClass]="validator ? 'pi-check text-green-500' : 'pi-times text-red-500'"
+                      ></i>
+                      <span>Mínimo 8 caracteres</span>
+                    </li>
+                  </ul>
+                </ng-template>
+              </p-password>
+              <label for="password">Contraseña</label>
+            </span>
+            @if (registerForm.get("password")?.invalid && registerForm.get("password")?.touched) {
+              <small class="p-error block" *ngIf="registerForm.get('password')?.errors?.['required']">
+                La contraseña es obligatoria.
+              </small>
+              <small class="p-error block" *ngIf="registerForm.get('password')?.errors?.['minlength']">
+                La contraseña debe contener al menos 8 caracteres
+              </small>
+            }
+          </div>
+        </div>
+        <p-button
+          styleClass="w-full h-3rem text-color mt-2"
+          severity="secondary"
+          label="Registrarse"
+          (onClick)="registerWithEmailClick()"
+        />
+        <p-divider />
+        <p-button
+          styleClass="w-full h-3rem text-color"
+          icon="pi pi-google"
+          label="Google"
+          severity="secondary"
+          [outlined]="true"
+          (onClick)="loginWithGoogleClick()"
+        />
+      </div>
+      <div class="flex justify-content-center align-items-center mt-6">
+        <span>¿Ya tiene una cuenta?</span>
+        <p-button
+          size="small"
+          label="Iniciar Sesión"
+          severity="warning"
+          routerLink="/auth/iniciar-sesion"
+          [text]="true"
+        />
+      </div>
+    </form>
+  </div>
+</div>

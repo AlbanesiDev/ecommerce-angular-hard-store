@@ -1,0 +1,75 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<div class="flex justify-content-center align-items-center px-2">
+  <div class="card w-30rem shadow-6 p-6">
+    <form [formGroup]="loginForm" (keydown.enter)="this.loginWithEmailClick()">
+      <h2 class="text-4xl mb-6">Iniciar Sesión</h2>
+      <div class="flex flex-column justify-content-between gap-4">
+        <div class="flex flex-column justify-content-between gap-5">
+          <div>
+            <span class="w-full p-float-label mb-2">
+              <input
+                pInputText
+                pAutoFocus
+                id="email"
+                type="text"
+                name="email"
+                class="w-full h-3rem"
+                formControlName="email"
+                autocomplete="email"
+              />
+              <label for="email">Correo electrónico</label>
+            </span>
+            @if (loginForm.get("email")?.invalid && loginForm.get("email")?.touched) {
+              <small class="p-error block" *ngIf="loginForm.get('email')?.errors?.['required']">
+                El correo electrónico es obligatorio.
+              </small>
+              <small class="p-error block" *ngIf="loginForm.get('email')?.errors?.['email']">Invalid Email.</small>
+            }
+          </div>
+          <div>
+            <span class="w-full p-float-label mb-2">
+              <p-password
+                type="password"
+                inputId="password"
+                name="password"
+                class="w-full h-3rem"
+                formControlName="password"
+                autocomplete="current-password"
+                [toggleMask]="true"
+                [feedback]="false"
+                [style]="{ width: '100%' }"
+                [inputStyle]="{ width: '100%', height: '3rem' }"
+              ></p-password>
+              <label for="password">Contraseña</label>
+            </span>
+            @if (loginForm.get("password")?.invalid && loginForm.get("password")?.touched) {
+              <small class="p-error block" *ngIf="loginForm.get('password')?.errors?.['required']">
+                La contraseña es obligatoria.
+              </small>
+            }
+          </div>
+        </div>
+        <p-button class="align-self-end" label="Olvide mi contraseña" [link]="true" />
+        <p-button
+          styleClass="w-full h-3rem text-color"
+          severity="secondary"
+          label="Iniciar sesión"
+          (onClick)="loginWithEmailClick()"
+        />
+        <p-divider />
+        <p-button
+          styleClass="w-full h-3rem text-color"
+          icon="pi pi-google"
+          label="Google"
+          severity="secondary"
+          [outlined]="true"
+          (onClick)="loginWithGoogleClick()"
+        />
+      </div>
+      <div class="flex justify-content-center align-items-center mt-6">
+        <span>¿No tienes una cuenta?</span>
+        <p-button size="small" severity="warning" label="Registrate" routerLink="/auth/registrarse" [text]="true" />
+      </div>
+    </form>
+  </div>
+</div>
