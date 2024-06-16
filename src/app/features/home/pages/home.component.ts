@@ -39,7 +39,7 @@ import * as HomeSelectors from "../store/home.selectors";
         [autoplayInterval]="4000"
       >
         <ng-template let-slide pTemplate="item">
-          <div class="h-full mx-2 border-1 bg-black surface-border border-round">
+          <div class="h-full mx-2  card">
             @if (loadingBanners()) {
               <p-skeleton styleClass="w-full h-17rem" />
             } @else if (bannerError()) {
@@ -50,29 +50,27 @@ import * as HomeSelectors from "../store/home.selectors";
           </div>
         </ng-template>
       </p-carousel>
-      @defer {
-        @if (productsError()) {
-          <h3 class="text-center text-red-500">{{ productsError() }}</h3>
-        } @else {
-          @for (item of productsSig(); track item.id) {
-            <h2 class="capitalize text-xl">{{ item.title }}</h2>
-            <p-carousel
-              ngSkipHydration
-              [value]="item.products"
-              [numScroll]="1"
-              [circular]="true"
-              [draggable]="true"
-              [showNavigators]="showNavigators()"
-              [autoplayInterval]="item.interval"
-              [responsiveOptions]="responsiveOptions"
-            >
-              <ng-template let-product pTemplate="item">
-                <div class="h-full mx-2">
-                  <app-card-grid [data]="product" [loading]="loadingProducts()" />
-                </div>
-              </ng-template>
-            </p-carousel>
-          }
+      @if (productsError()) {
+        <h3 class="text-center text-red-500">{{ productsError() }}</h3>
+      } @else {
+        @for (item of productsSig(); track item.id; let i = $index) {
+          <h1 class="capitalize text-xl">{{ item.title }}</h1>
+          <p-carousel
+            ngSkipHydration
+            [value]="item.products"
+            [numScroll]="1"
+            [circular]="true"
+            [draggable]="true"
+            [showNavigators]="showNavigators()"
+            [autoplayInterval]="item.interval"
+            [responsiveOptions]="responsiveOptions"
+          >
+            <ng-template let-product pTemplate="item">
+              <div class="h-full mx-2">
+                <app-card-grid [data]="product" [loading]="loadingProducts()" [loadingImg]="i < 5 ? 'eager' : 'lazy'" />
+              </div>
+            </ng-template>
+          </p-carousel>
         }
       }
     </div>
@@ -155,7 +153,7 @@ export default class HomeComponent implements OnInit {
 
   @HostListener("window:resize", ["$event"])
   private updateResponsive() {
-    if (window.innerWidth > 768) {
+    if (typeof window !== "undefined" && window.innerWidth > 768) {
       this.showNavigators.set(true);
     } else {
       this.showNavigators.set(false);

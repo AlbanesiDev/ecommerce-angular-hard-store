@@ -12,9 +12,7 @@ import { ImgProductComponent } from "../img-product/img-product.component";
   standalone: true,
   imports: [CommonModule, CurrencyPipe, AsyncPipe, ButtonModule, SkeletonModule, ImgProductComponent],
   template: `
-    <div
-      class="flex flex-column justify-content-between gap-3 bg-black border-1 border-round surface-border min-h-full w-full px-3 py-4"
-    >
+    <div class="flex flex-column justify-content-between gap-3 card min-h-full w-full px-3 py-4">
       @if (loading()) {
         <p-skeleton styleClass="w-full h-10rem" />
         <p-skeleton styleClass="w-9" />
@@ -23,7 +21,7 @@ import { ImgProductComponent } from "../img-product/img-product.component";
         <p-button styleClass="w-full h-2rem mt-2 p-2 border-round-sm" severity="warning" [disabled]="true" />
       } @else {
         <div class="h-full">
-          <app-img-product loading="lazy" [data]="data()" [padding]="3" />
+          <app-img-product [loading]="loadingImg()" [data]="data()" [padding]="3" />
           <h3 class="text-base">{{ data().title }}</h3>
         </div>
         <div class="flex flex-column gap-4">
@@ -51,6 +49,7 @@ export class CardGridComponent {
   public _imgPathService = inject(ImgPathService);
   public data = input.required<Product>();
   public loading = input.required<boolean>();
+  public loadingImg = input<"eager" | "lazy">("eager");
   public imgHover: boolean = false;
 
   public navigateToProduct(url: string): void {

@@ -11,7 +11,7 @@ import { ImgProductComponent } from "../img-product/img-product.component";
   selector: "app-card-list",
   standalone: true,
   imports: [CommonModule, CurrencyPipe, AsyncPipe, ButtonModule, SkeletonModule, ImgProductComponent],
-  template: ` <div class="flex gap-3 bg-black border-1 border-round surface-border min-h-full px-3 py-4">
+  template: ` <div class="flex gap-3 card min-h-full px-3 py-4">
     @if (loading()) {
       <div class="w-3">
         <p-skeleton styleClass="w-full h-10rem" />
@@ -61,6 +61,7 @@ export class CardListComponent {
   public _imgPathService = inject(ImgPathService);
   public data = input.required<Product>();
   public loading = input.required<boolean>();
+  public loadingImg = input<"lazy" | "eager">("eager");
   public imgHover: boolean = false;
 
   public navigateToProduct(url: string): void {
