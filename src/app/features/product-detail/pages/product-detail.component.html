@@ -1,0 +1,105 @@
+@if (notFound()) {
+  <app-not-found [data]="data()" />
+} @else {
+  <div
+    class="flex flex-column md:flex-row gap-3 justify-content-betwen align-items-start card px-2 md:px-4 py-4 md:py-6"
+  >
+    <div class="col-12 md:col-5">
+      <p-galleria
+        [value]="data().images"
+        [circular]="true"
+        [numVisible]="4"
+        [showThumbnails]="data().images && data().images.length > 1"
+        [showItemNavigators]="data().images && data().images.length > 1"
+        [showThumbnailNavigators]="false"
+      >
+        <ng-template pTemplate="item" let-item>
+          <div class="aspect-ratio-75-67 bg-white border-round p-4 overflow-hidden">
+            <img class="w-full p-2" [src]="item.url | imagePath" alt="Imagen de {{ data().title }}" />
+          </div>
+        </ng-template>
+        <ng-template pTemplate="thumbnail" let-item>
+          <div class="aspect-ratio-75-67 bg-white border-round p-1 overflow-hidden">
+            <img class="w-full" [src]="item.url | imagePath" alt="Imagen de {{ data().title }}" />
+          </div>
+        </ng-template>
+      </p-galleria>
+    </div>
+    <div class="col-12 md:col-7">
+      <div class="flex flex-column">
+        <h1 class="m-0 text-2xl font-normal px-2">{{ data().title }}</h1>
+        <div class="flex gap-2 mt-3 px-2">
+          @if (data().main_code && data().main_code.length >= 1) {
+            <p-button
+              label="{{ data().main_code[0] }}"
+              size="small"
+              [rounded]="true"
+              severity="secondary"
+              (onClick)="copyClipboard(data().main_code[0])"
+            />
+          }
+          @if (data().id_product) {
+            <p-button
+              label="ID: {{ data().id_product }}"
+              size="small"
+              [rounded]="true"
+              severity="secondary"
+              (onClick)="copyClipboard(data().id_product)"
+            />
+          }
+        </div>
+        <p-divider />
+
+        <p class="m-0 text-blue-400 px-2">
+          Precio especial
+          <span
+            class="text-2xl font-medium ml-1"
+            pTooltip="Pagando por depósito o transferencia bancaria."
+            tooltipPosition="bottom"
+          >
+            {{ data().price_special | currency: "ARS" : "symbol" : "1.2-2" }}
+            <sup>
+              <i class="pi pi-info-circle"></i>
+            </sup>
+          </span>
+        </p>
+        <p-divider />
+        <div class="px-2">
+          <p class="m-0">
+            12 cuotas sin interés de
+            <span class="text-purple-400 text-xl ml-1">
+              {{ priceInstallment() | currency: "ARS" : "symbol" : "1.2-2" }}
+            </span>
+          </p>
+          <p class="m-0 mt-3">Precio de lista {{ data().price_list | currency: "ARS" : "symbol" : "1.2-2" }}</p>
+        </div>
+        <p-divider />
+        <div class="flex flex-column gap-3 px-2 text-green-400">
+          @if (data().warranty) {
+            <div class="flex align-items-center gap-2">
+              <i class="pi pi-shield text-lg"></i>
+              <p class="m-0">Garantía de {{ data().warranty }} meses.</p>
+            </div>
+          }
+          <div class="flex align-items-center gap-2">
+            <i class="pi pi-truck text-lg"></i>
+            <p class="m-0">Envíos a todo el país.</p>
+          </div>
+        </div>
+        <p-divider />
+        <div class="px-2">
+          <p-button
+            styleClass="w-full"
+            [label]="data().stock <= 0 ? 'Agotado' : 'Agregar al carrito'"
+            severity="warning"
+            [disabled]="data().stock <= 0"
+            (onClick)="addToCart(this.data())"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  @if (data().specifications) {
+    <app-specifications [data]="data().specifications" />
+  }
+}
