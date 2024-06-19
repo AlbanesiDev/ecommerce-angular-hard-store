@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component, inject, input } from "@angular/core
 import { Router } from "@angular/router";
 import { ButtonModule } from "primeng/button";
 import { SkeletonModule } from "primeng/skeleton";
-import { ImgPathService } from "../../../core/services/img-path.service";
 import { Product } from "../../../core/interfaces/product.interface";
 import { ImgProductComponent } from "../img-product/img-product.component";
 
@@ -46,7 +45,6 @@ import { ImgProductComponent } from "../img-product/img-product.component";
 })
 export class CardGridComponent {
   private _router = inject(Router);
-  public _imgPathService = inject(ImgPathService);
   public data = input.required<Product>();
   public loading = input.required<boolean>();
   public loadingImg = input<"eager" | "lazy">("eager");

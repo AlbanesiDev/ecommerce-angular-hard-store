@@ -1,16 +1,17 @@
 import { AsyncPipe, CommonModule, CurrencyPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject, input } from "@angular/core";
-import { Product } from "../../../core/interfaces/product.interface";
-import { ButtonModule } from "primeng/button";
-import { ImgPathService } from "../../../core/services/img-path.service";
-import { SkeletonModule } from "primeng/skeleton";
 import { Router } from "@angular/router";
+
+import { ButtonModule } from "primeng/button";
+import { SkeletonModule } from "primeng/skeleton";
+
+import { Product } from "../../../core/interfaces/product.interface";
 import { ImgProductComponent } from "../img-product/img-product.component";
 
 @Component({
   selector: "app-card-list",
   standalone: true,
-  imports: [CommonModule, CurrencyPipe, AsyncPipe, ButtonModule, SkeletonModule, ImgProductComponent],
+  imports: [CommonModule, AsyncPipe, CurrencyPipe, ButtonModule, SkeletonModule, ImgProductComponent],
   template: ` <div class="flex gap-3 card min-h-full px-3 py-4">
     @if (loading()) {
       <div class="w-3">
@@ -58,7 +59,6 @@ import { ImgProductComponent } from "../img-product/img-product.component";
 })
 export class CardListComponent {
   private _router = inject(Router);
-  public _imgPathService = inject(ImgPathService);
   public data = input.required<Product>();
   public loading = input.required<boolean>();
   public loadingImg = input<"lazy" | "eager">("eager");
