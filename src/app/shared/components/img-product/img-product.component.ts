@@ -1,13 +1,14 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject, input } from "@angular/core";
 import { Router } from "@angular/router";
-import { ImgPathService } from "../../../core/services/img-path.service";
+
 import { Product } from "../../../core/interfaces/product.interface";
+import { ImagePathPipe } from "../../pipes/image-path.pipe";
 
 @Component({
   selector: "app-img-product",
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ImagePathPipe],
   template: `
     <button
       class="btn-img relative bg-white border-round overflow-hidden p-{{ padding() }}"
@@ -18,20 +19,21 @@ import { Product } from "../../../core/interfaces/product.interface";
       @if (data().images && data().images.length > 1) {
         <img
           class="w-full cursor-pointer transition-opacity"
-          [src]="imgPathService.urlImg(data().images[0].url)"
+          [src]="data().images[0].url | imagePath"
+          [loading]="loading()"
           alt="Imagen de {{ data().title }}"
         />
         <img
           class="w-full absolute top-0 left-0 cursor-pointer transition-opacity opacity-0 p-{{ padding() }}"
-          [src]="imgPathService.urlImg(data().images[1].url)"
-          [loading]="loading()"
+          loading="lazy"
+          [src]="data().images[1].url | imagePath"
           [class.opacity-100]="imgHover"
           alt="Imagen de {{ data().title }}"
         />
       } @else {
         <img
           class="w-full cursor-pointer transition-opacity"
-          [src]="imgPathService.urlImg(data().images[0].url)"
+          [src]="data().images[0].url | imagePath"
           [loading]="loading()"
           [class.opacity-100]="imgHover"
           alt="Imagen de {{ data().title }}"
@@ -62,8 +64,7 @@ import { Product } from "../../../core/interfaces/product.interface";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ImgProductComponent {
-  private router: Router = inject(Router);
-  public imgPathService: ImgPathService = inject(ImgPathService);
+  private readonly _router = inject(Router);
 
   public data = input.required<Product>();
   public padding = input.required<number>();
@@ -72,6 +73,6 @@ export class ImgProductComponent {
   public imgHover: boolean = false;
 
   public navigateToProduct(url: string): void {
-    this.router.navigate(["producto/", url]);
+    this._router.navigate(["producto/", url]);
   }
 }
