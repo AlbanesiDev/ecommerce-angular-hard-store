@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from "@angular/core";
+import { ChangeDetectionStrategy, Component, DestroyRef, computed, inject, signal } from "@angular/core";
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Store } from "@ngrx/store";
@@ -48,6 +48,7 @@ export default class ProductDetailComponent {
   private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _productService = inject(ProductService);
   private readonly _messageService = inject(MessageService);
+  private readonly _destroyRef = inject(DestroyRef);
   private readonly _store = inject(Store<{ cart: CartState }>);
 
   public error = signal<unknown | undefined>(undefined); // TODO: Handle error
@@ -75,7 +76,7 @@ export default class ProductDetailComponent {
   public getProduct(url: string) {
     this._productService
       .getProduct(url)
-      .pipe(takeUntilDestroyed())
+      .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe({
         next: (res) => {
           this.data.set(res);
