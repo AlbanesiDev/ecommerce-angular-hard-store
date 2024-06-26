@@ -24,7 +24,7 @@ import * as HomeSelectors from "../store/home.selectors";
 @Component({
   selector: "app-home",
   standalone: true,
-  imports: [CommonModule, AsyncPipe, CarouselModule, SkeletonModule, ProgressSpinnerModule, CardGridComponent],
+  imports: [CommonModule, AsyncPipe, ProgressSpinnerModule, CarouselModule, SkeletonModule, CardGridComponent],
   template: `
     <div class="flex flex-column justify-content-center gap-4">
       <p-carousel
@@ -45,7 +45,12 @@ import * as HomeSelectors from "../store/home.selectors";
             } @else if (bannerError()) {
               <h3 class="text-center text-red-500">{{ bannerError() }}</h3>
             } @else {
-              <img class="w-full min-h-full border-round-xs px-2 py-2" [src]="slide.src" [alt]="slide.alt" />
+              <img
+                class="w-full min-h-full border-round-xs px-2 py-2"
+                [src]="slide.src"
+                [srcset]="slide.srcset"
+                [alt]="slide.alt"
+              />
             }
           </div>
         </ng-template>
@@ -78,7 +83,8 @@ import * as HomeSelectors from "../store/home.selectors";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class HomeComponent implements OnInit {
-  private _destroyRef = inject(DestroyRef);
+  private readonly _destroyRef = inject(DestroyRef);
+  private readonly _store = inject(Store<HomeState>);
 
   public bannersSig = signal<HomeBanners[] | any[]>([]);
   public productsSig = signal<HomeProducts[] | any[]>([]);
@@ -91,7 +97,7 @@ export default class HomeComponent implements OnInit {
 
   public showNavigators = signal<boolean>(true);
 
-  public responsiveOptions: Array<CarouselResponsiveOptions> = [
+  public readonly responsiveOptions: Array<CarouselResponsiveOptions> = [
     {
       breakpoint: "2560px",
       numVisible: 5,
@@ -119,7 +125,7 @@ export default class HomeComponent implements OnInit {
     },
   ];
 
-  constructor(private store: Store<{ home: HomeState }>) {
+  constructor() {
     this.updateResponsive();
     this.subscribeToSelector(selectBanners, this.bannersSig);
     this.subscribeToSelector(selectProducts, this.productsSig);
@@ -130,14 +136,14 @@ export default class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    combineLatest([this.store.select(HomeSelectors.selectBanners), this.store.select(HomeSelectors.selectProducts)])
+    combineLatest([this._store.select(HomeSelectors.selectBanners), this._store.select(HomeSelectors.selectProducts)])
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe(([banners, products]) => {
         if (!banners || banners.length === 0) {
-          this.store.dispatch(HomeActions.loadBanners());
+          this._store.dispatch(HomeActions.loadBanners());
         }
         if (!products || products.length === 0) {
-          this.store.dispatch(HomeActions.loadProducts());
+          this._store.dispatch(HomeActions.loadProducts());
         }
       });
     if (this.loadingBanners()) {
@@ -166,7 +172,7 @@ export default class HomeComponent implements OnInit {
    * @param signal - The signal to set the value to.
    */
   private subscribeToSelector<T>(selector: any, signal: any): void {
-    this.store
+    this._store
       .select(selector)
       .pipe(takeUntilDestroyed())
       .subscribe((res: T) => {
