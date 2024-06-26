@@ -12,25 +12,23 @@ import { HomeBanners, HomeProducts } from "../interfaces/home.interface";
   providedIn: "root",
 })
 export class HomeService {
-  private _http = inject(HttpClient);
-  private _firestore = inject(Firestore);
+  private readonly _http = inject(HttpClient);
+  private readonly _firestore = inject(Firestore);
 
-  private productionState: boolean = environment.production;
+  private readonly productionState: boolean = environment.production;
 
-  private homeBanners: string = environment.endpoint.homeBanners;
-  private homeProducts: string = environment.endpoint.homeProducts;
+  private readonly mockHomeBanners: string = environment.mock.homeBanner;
+  private readonly mockHomeProducts: string = environment.mock.homeProducts;
 
-  private mockHomeBanners: string = environment.mock.homeBanner;
-  private mockHomeProducts: string = environment.mock.homeProducts;
+  private readonly homeBanners: string = environment.endpoint.homeBanners;
+  private readonly homeProducts: string = environment.endpoint.homeProducts;
 
   private bannersCollecion = collection(this._firestore, this.homeBanners);
   private productCollection = collection(this._firestore, this.homeProducts);
 
   /**
    * Fetches the home banners.
-   *
    * In production, it retrieves data from Firestore. In development, it fetches data from a mock HTTP endpoint.
-   *
    * @returns An observable that emits an array of HomeBanners.
    */
   public getBanners(): Observable<HomeBanners[]> {
@@ -43,9 +41,7 @@ export class HomeService {
 
   /**
    * Fetches the home products.
-   *
    * In production, it retrieves data from Firestore. In development, it fetches data from a mock HTTP endpoint.
-   *
    * @returns An observable that emits an array of HomeProducts.
    */
   public getProducts(): Observable<HomeProducts[]> {
