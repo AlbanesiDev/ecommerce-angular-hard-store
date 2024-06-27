@@ -12,7 +12,7 @@ import { DividerModule } from "primeng/divider";
       <div class="flex flex-column sm:flex-row gap-5 justify-content-between w-12 px-3 xl:px-0 xl:w-8">
         <div class="flex-order-2 sm:flex-order-0 w-12 sm:w-2">
           <div class="flex justify-content-center align-items-center h-full">
-            <img class="w-3 sm:w-5 lg:w-4" src="/assets/images/afip/data.jpg" alt="Qr afip" />
+            <img class="w-3 sm:w-5 lg:w-4" src="/assets/images/afip/data.webp" alt="Qr afip" />
           </div>
         </div>
         <div class="flex-order-0 sm:flex-order-1 w-12 sm:w-5">
