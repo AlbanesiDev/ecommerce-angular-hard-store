@@ -1,8 +1,8 @@
 <!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
 <div class="flex justify-content-center align-items-center px-2">
   <div class="card w-30rem shadow-6 p-6">
-    <form [formGroup]="loginForm" (keydown.enter)="this.loginWithEmailClick()">
-      <h2 class="text-4xl mb-6">Iniciar Sesión</h2>
+    <form [formGroup]="loginForm" (keydown.enter)="this.onLoginWithEmailClick()">
+      <h2 class="text-3xl mb-6">Iniciar Sesión</h2>
       <div class="flex flex-column justify-content-between gap-4">
         <div class="flex flex-column justify-content-between gap-5">
           <div>
@@ -23,7 +23,9 @@
               <small class="p-error block" *ngIf="loginForm.get('email')?.errors?.['required']">
                 El correo electrónico es obligatorio.
               </small>
-              <small class="p-error block" *ngIf="loginForm.get('email')?.errors?.['email']">Invalid Email.</small>
+              <small class="p-error block" *ngIf="loginForm.get('email')?.errors?.['email']"
+                >El correo electrónico es invalido.</small
+              >
             }
           </div>
           <div>
@@ -49,12 +51,17 @@
             }
           </div>
         </div>
-        <p-button class="align-self-end" label="Olvide mi contraseña" [link]="true" />
+        <p-button
+          class="align-self-end"
+          label="Olvide mi contraseña"
+          [link]="true"
+          routerLink="/auth/recuperar-contraseña"
+        />
         <p-button
           styleClass="w-full h-3rem text-color"
           severity="secondary"
           label="Iniciar sesión"
-          (onClick)="loginWithEmailClick()"
+          (onClick)="onLoginWithEmailClick()"
         />
         <p-divider />
         <p-button
@@ -63,7 +70,7 @@
           label="Google"
           severity="secondary"
           [outlined]="true"
-          (onClick)="loginWithGoogleClick()"
+          (onClick)="onGoogleSignInClick()"
         />
       </div>
       <div class="flex justify-content-center align-items-center mt-6">

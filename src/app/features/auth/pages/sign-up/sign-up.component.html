@@ -1,7 +1,8 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
 <div class="flex justify-content-center align-items-center px-2">
-  <div class="card w-30rem shadow-6 p-6">
-    <form [formGroup]="registerForm">
-      <h2 class="text-4xl mb-6">Registrarse</h2>
+  <div class="card border-orange-500 w-30rem shadow-6 p-6">
+    <form [formGroup]="registerForm" (keydown.enter)="this.onRegisterWithEmailClick()" autocomplete="off">
+      <h2 class="text-3xl mb-6">Registrarse</h2>
       <div class="flex flex-column justify-content-between gap-4">
         <div class="flex flex-column justify-content-between gap-5">
           <div>
@@ -21,9 +22,9 @@
               <small class="p-error block" *ngIf="registerForm.get('email')?.errors?.['required']">
                 El correo electronico es obligatorio.
               </small>
-              <small class="p-error block" *ngIf="registerForm.get('email')?.errors?.['email']"
-                >Correo electronico invalido.</small
-              >
+              <small class="p-error block" *ngIf="registerForm.get('email')?.errors?.['email']">
+                Correo electronico invalido.
+              </small>
               <small class="p-error block" *ngIf="registerForm.get('email')?.errors?.['']">
                 El email que intentas utilizar ya se encuentra registrado.
               </small>
@@ -38,47 +39,27 @@
                 class="w-full h-3rem"
                 styleClass="border-orange-500 "
                 formControlName="password"
-                autocomplete="current-password"
+                autocomplete="new-password"
+                promptLabel="Escribe una contraseña"
                 [toggleMask]="true"
                 [feedback]="true"
                 [style]="{ width: '100%' }"
                 [inputStyle]="{ width: '100%', height: '3rem' }"
               >
-                <ng-template pTemplate="header">
-                  <h6>Escribe una contraseña</h6>
-                </ng-template>
                 <ng-template pTemplate="footer">
                   <p-divider></p-divider>
-                  <p class="mt-2">Se recomienda utilizar:</p>
-                  <ul class="pl-2 mt-0 list-none">
-                    <li>
-                      <i
-                        class="pi mr-2"
-                        [ngClass]="validator ? 'pi-check text-green-500' : 'pi-times text-red-500'"
-                      ></i>
-                      <span>Al menos una minúscula</span>
-                    </li>
-                    <li>
-                      <i
-                        class="pi mr-2"
-                        [ngClass]="validator ? 'pi-check text-green-500' : 'pi-times text-red-500'"
-                      ></i>
-                      <span>Al menos una mayúscula</span>
-                    </li>
-                    <li>
-                      <i
-                        class="pi mr-2"
-                        [ngClass]="validator ? 'pi-check text-green-500' : 'pi-times text-red-500'"
-                      ></i>
-                      <span>Al menos un número</span>
-                    </li>
-                    <li>
-                      <i
-                        class="pi mr-2"
-                        [ngClass]="validator ? 'pi-check text-green-500' : 'pi-times text-red-500'"
-                      ></i>
-                      <span>Mínimo 8 caracteres</span>
-                    </li>
+                  <p class="mt-2">Se debe utilizar:</p>
+                  <ul class="m-0 p-0 list-none" style="line-height: 1.75">
+                    @for (item of passwordRequirements; track $index) {
+                      <li class="flex align-items-center gap-2">
+                        <i
+                          class="pi"
+                          [ngClass]="item.valid ? 'pi-check' : 'pi-times'"
+                          [ngStyle]="{ color: item.valid ? 'green' : 'red' }"
+                        ></i>
+                        {{ item.message }}
+                      </li>
+                    }
                   </ul>
                 </ng-template>
               </p-password>
@@ -98,7 +79,7 @@
           styleClass="w-full h-3rem text-color mt-2"
           severity="secondary"
           label="Registrarse"
-          (onClick)="registerWithEmailClick()"
+          (onClick)="onRegisterWithEmailClick()"
         />
         <p-divider />
         <p-button
@@ -107,18 +88,12 @@
           label="Google"
           severity="secondary"
           [outlined]="true"
-          (onClick)="loginWithGoogleClick()"
+          (onClick)="onSignInWithGoogleClick()"
         />
       </div>
       <div class="flex justify-content-center align-items-center mt-6">
         <span>¿Ya tiene una cuenta?</span>
-        <p-button
-          size="small"
-          label="Iniciar Sesión"
-          severity="warning"
-          routerLink="/auth/iniciar-sesion"
-          [text]="true"
-        />
+        <p-button size="small" label="Iniciar Sesión" severity="info" routerLink="/auth/iniciar-sesion" [text]="true" />
       </div>
     </form>
   </div>

@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { CommonModule } from "@angular/common";
 import { Router, RouterModule } from "@angular/router";
-import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit, inject } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { Store } from "@ngrx/store";
 
 import { ButtonModule } from "primeng/button";
 import { DividerModule } from "primeng/divider";
@@ -12,6 +12,8 @@ import { InputTextModule } from "primeng/inputtext";
 import { AutoFocusModule } from "primeng/autofocus";
 
 import { AuthService } from "../../services/auth.service";
+import { signInWithGoogle, signUp } from "../../store/auth.actions";
+import { PasswordRequirement, SignForm } from "../../interfaces/auth.interface";
 
 @Component({
   selector: "app-sign-up",
@@ -29,92 +31,69 @@ import { AuthService } from "../../services/auth.service";
   templateUrl: "./sign-up.component.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class SignUpComponent {
-  /**
-   * Router injection for handling navigation.
-   */
-  public router: Router = inject(Router);
+export default class SignUpComponent implements OnInit {
+  public readonly _messageService = inject(MessageService);
+  public readonly _formBuilder = inject(FormBuilder);
+  public readonly _authService = inject(AuthService);
+  public readonly _router = inject(Router);
+  public readonly _store = inject(Store);
 
-  /**
-   * Form builder injection for handling form operations.
-   */
-  public formBuilder: FormBuilder = inject(FormBuilder);
+  public passwordRequirements: PasswordRequirement[] = [
+    { validator: "hasMinLength", message: "Minimo 8 caracteres", valid: false },
+    { validator: "hasUppercase", message: "Necesita al menos una mayúscula", valid: false },
+    { validator: "hasLowercase", message: "Necesita al menos una minúscula", valid: false },
+    { validator: "hasNumber", message: "Necesita al menos un número", valid: false },
+  ];
 
-  /**
-   * AuthService injection for handling authentication operations.
-   */
-  public authService: AuthService = inject(AuthService);
-
-  /**
-   * MessageService injection for displaying messages to the user.
-   */
-  public messageService: MessageService = inject(MessageService);
-
-  /**
-   * @todo Create a custom password validator and replace this variable.
-   */
-  public validator: boolean = false;
-
-  /**s
-   * The form group that holds the registration form controls and validators.
-   */
-  public registerForm: FormGroup<any> = this.formBuilder.group({
-    email: this.formBuilder.control("", {
+  public registerForm: FormGroup<SignForm> = this._formBuilder.group({
+    email: this._formBuilder.control("", {
       validators: [Validators.required, Validators.email],
       nonNullable: true,
     }),
-    password: this.formBuilder.control("", {
+    password: this._formBuilder.control("", {
       validators: [Validators.required, Validators.minLength(8)],
       nonNullable: true,
     }),
   });
 
-  /**
-   * Handles the registration action when the user clicks the register button.
-   */
-  public registerWithEmailClick(): void {
+  ngOnInit(): void {
+    this.listenToPasswordChanges();
+  }
+
+  private updatePasswordRequirements(value: string): void {
+    this.passwordRequirements.forEach((req) => {
+      switch (req.validator) {
+        case "hasMinLength":
+          req["valid"] = value.length >= 8;
+          break;
+        case "hasUppercase":
+          req["valid"] = /[A-Z]/.test(value);
+          break;
+        case "hasLowercase":
+          req["valid"] = /[a-z]/.test(value);
+          break;
+        case "hasNumber":
+          req["valid"] = /[0-9]/.test(value);
+          break;
+      }
+    });
+  }
+
+  private listenToPasswordChanges(): void {
+    this.registerForm.get("password")!.valueChanges.subscribe((value) => {
+      this.updatePasswordRequirements(value);
+    });
+  }
+
+  public onRegisterWithEmailClick(): void {
     if (this.registerForm.valid) {
-      this.authService
-        .signUpWithEmail(this.registerForm.value as { nickname: string; email: string; password: string })
-        .subscribe({
-          next: () => {
-            this.router.navigateByUrl("/perfil"),
-              this.messageService.add({
-                severity: "success",
-                summary: "Succes",
-                detail: `Successful registration!`,
-                life: 5000,
-              });
-          },
-          error: (err: any) => {
-            console.log(err.message);
-            this.messageService.add({
-              severity: "error",
-              summary: "Error",
-              detail: `${err.message}`,
-              life: 5000,
-            });
-          },
-        });
+      this._store.dispatch(signUp(this.registerForm.value as { email: string; password: string }));
     } else {
       this.registerForm.markAllAsTouched();
     }
   }
 
-  /**
-   * Handles the Google login action when the user clicks the Google login button.
-   */
-  public loginWithGoogleClick(): void {
-    this.authService
-      .signInWithGoogle()
-      .then(() => this.router.navigateByUrl("/perfil"))
-      .catch((err) => {
-        console.error(err);
-        this.messageService.add({
-          severity: "error",
-          summary: "Error",
-          detail: `Error: ${err}`,
-        });
-      });
+  public onSignInWithGoogleClick(): void {
+    this._store.dispatch(signInWithGoogle());
   }
 }

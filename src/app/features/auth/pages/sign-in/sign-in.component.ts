@@ -1,20 +1,21 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { CommonModule } from "@angular/common";
 import { Router, RouterModule } from "@angular/router";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { Store } from "@ngrx/store";
 
 import { ButtonModule } from "primeng/button";
 import { DividerModule } from "primeng/divider";
 import { PasswordModule } from "primeng/password";
 import { InputTextModule } from "primeng/inputtext";
 import { AutoFocusModule } from "primeng/autofocus";
-
 import { MessageService } from "primeng/api";
+
 import { AuthService } from "../../services/auth.service";
+import { signIn, signInWithGoogle } from "../../store/auth.actions";
+import { SignForm } from "../../interfaces/auth.interface";
 
 @Component({
-  selector: "app-sign-in",
   standalone: true,
   imports: [
     CommonModule,
@@ -30,74 +31,32 @@ import { AuthService } from "../../services/auth.service";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SignInComponent {
-  /**
-   * Router injection for handling navigation.
-   */
-  public router: Router = inject(Router);
+  public readonly _messageService = inject(MessageService);
+  public readonly _authService = inject(AuthService);
+  public readonly _formBuilder = inject(FormBuilder);
+  public readonly _router = inject(Router);
+  public readonly _store = inject(Store);
 
-  /**
-   * Form builder injection for handling form operations.
-   */
-  public formBuilder: FormBuilder = inject(FormBuilder);
-
-  /**
-   * AuthService injection for handling authentication operations.
-   */
-  public authService: AuthService = inject(AuthService);
-
-  /**
-   * MessageService injection for displaying messages to the user.
-   */
-  public messageService: MessageService = inject(MessageService);
-
-  /**
-   * The form group that holds the login form controls and validators.
-   */
-  public loginForm: FormGroup<any> = this.formBuilder.group({
-    email: this.formBuilder.control("", {
+  public loginForm: FormGroup<SignForm> = this._formBuilder.group({
+    email: this._formBuilder.control("", {
       validators: [Validators.required, Validators.email],
       nonNullable: true,
     }),
-    password: this.formBuilder.control("", {
+    password: this._formBuilder.control("", {
       validators: [Validators.required],
       nonNullable: true,
     }),
   });
 
-  /**
-   * Handles the login action when the user clicks the login button.
-   */
-  public loginWithEmailClick(): void {
+  public onLoginWithEmailClick(): void {
     if (this.loginForm.valid) {
-      this.authService.signInWithEmail(this.loginForm.value as { email: string; password: string }).subscribe({
-        next: () => {
-          this.router.navigateByUrl("/chat"),
-            this.messageService.add({
-              severity: "success",
-              summary: "Succes",
-              detail: `successful session!`,
-              life: 5000,
-            });
-        },
-        error: (err: any) => {
-          console.log(err.message);
-          this.messageService.add({
-            severity: "error",
-            summary: "Error",
-            detail: `${err.message}`,
-            life: 5000,
-          });
-        },
-      });
+      this._store.dispatch(signIn(this.loginForm.value as { email: string; password: string }));
     } else {
       this.loginForm.markAllAsTouched();
     }
   }
 
-  /**
-   * Handles the Google login action when the user clicks the Google login button.
-   */
-  public loginWithGoogleClick(): void {
-    this.authService.signInWithGoogle();
+  public onGoogleSignInClick(): void {
+    this._store.dispatch(signInWithGoogle());
   }
 }
