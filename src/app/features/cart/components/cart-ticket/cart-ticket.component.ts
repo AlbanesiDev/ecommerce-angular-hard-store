@@ -2,9 +2,11 @@ import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms";
+
 import { RadioButtonModule } from "primeng/radiobutton";
 import { DividerModule } from "primeng/divider";
 import { ButtonModule } from "primeng/button";
+
 import { Product } from "../../../../core";
 import { PricePipe } from "../../../../shared";
 
@@ -18,19 +20,19 @@ import { PricePipe } from "../../../../shared";
         @for (item of data(); track item.id_cart) {
           <div class="flex">
             <div class="w-7">
-              <p class="text-overflow-ellipsis overflow-hidden">{{ item.title }}</p>
+              <p class="text-base text-overflow-ellipsis overflow-hidden">{{ item.title }}</p>
             </div>
             <div class="w-5 ">
-              <p class="text-right">
+              <p class="font-semibold text-base text-right text-blue-400">
                 {{ item.price_special | priceView: item.price_list : price | currency: "ARS" : "symbol" }}
               </p>
             </div>
           </div>
         }
         <p-divider />
-        <p class="text-right">Subtotal: {{ calcSubtotal() | currency: "ARS" : "symbol" }}</p>
-        <p class="text-right">Envío: {{ shipping | currency: "ARS" : "symbol" }}</p>
-        <p class="text-lg text-right font-bold">
+        <p class="text-base text-right">Subtotal: {{ calcSubtotal() | currency: "ARS" : "symbol" }}</p>
+        <p class="text-base text-right text-green-400">Envío: {{ shipping | currency: "ARS" : "symbol" }}</p>
+        <p class="text-xl text-right font-bold">
           Total: {{ calcTotal(calcSubtotal(), shipping) | currency: "ARS" : "symbol" }}
         </p>
       </div>
