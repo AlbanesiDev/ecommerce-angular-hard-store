@@ -40,9 +40,9 @@ import { ProgressSpinnerModule } from "primeng/progressspinner";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class CartComponent {
-  public _store = inject(Store<{ cart: CartState }>);
-  public _confirmationService = inject(ConfirmationService);
-  public _messageService = inject(MessageService);
+  private readonly _store = inject(Store<{ cart: CartState }>);
+  private readonly _confirmationService = inject(ConfirmationService);
+  private readonly _messageService = inject(MessageService);
   public cartSig = signal<Product[]>([]);
 
   constructor() {

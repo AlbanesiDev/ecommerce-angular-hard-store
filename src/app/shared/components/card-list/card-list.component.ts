@@ -58,7 +58,7 @@ import { ImgProductComponent } from "../img-product/img-product.component";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardListComponent {
-  private _router = inject(Router);
+  private readonly _router = inject(Router);
   public data = input.required<Product>();
   public loading = input.required<boolean>();
   public loadingImg = input<"lazy" | "eager">("eager");
