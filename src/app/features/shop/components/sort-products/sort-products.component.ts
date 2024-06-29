@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import { Store } from "@ngrx/store";
@@ -16,9 +16,7 @@ import * as ShopActions from "../../store/shop.actions";
   standalone: true,
   imports: [FormsModule, DropdownModule, ButtonModule],
   template: `
-    <div
-      class="flex justify-content-between align-items-center bg-black border-1 border-round surface-border w-full h-4rem px-3"
-    >
+    <div class="flex justify-content-between align-items-center card w-full h-4rem px-3">
       <div class="w-4">
         <p-dropdown
           styleClass="w-full bg-black"
@@ -51,24 +49,34 @@ import * as ShopActions from "../../store/shop.actions";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SortProductsComponent {
+  private readonly _store = inject(Store<{ shop: ShopState }>);
+
   public activeViewMode: ViewMode = "grid";
-  public selectedSortOrder: SortOrder = "top";
-  public sortOptions = [
+  public selectedSortOrder: SortOrder = "default";
+  public readonly sortOptions = [
     {
       label: "Destacados",
-      value: "top",
+      value: "default",
     },
     {
       label: "Precio más bajo",
-      value: "min",
+      value: "priceAsc",
     },
     {
       label: "Precio más alto",
-      value: "max",
+      value: "priceDesc",
+    },
+    {
+      label: "De la a-z",
+      value: "alphaAsc",
+    },
+    {
+      label: "De la z-a",
+      value: "alphaDesc",
     },
   ];
 
-  constructor(private store: Store<{ shop: ShopState }>) {
+  constructor() {
     this.subscribeToStore(selectViewMode, (viewMode: ViewMode) => {
       this.activeViewMode = viewMode;
     });
@@ -82,7 +90,7 @@ export class SortProductsComponent {
    * @param sortOrder The selected sort order.
    */
   public onSortOrderChange(sortOrder: SortOrder): void {
-    this.store.dispatch(ShopActions.setSortOrder({ order: sortOrder }));
+    this._store.dispatch(ShopActions.changeSortOrder({ sortOrder: sortOrder }));
   }
 
   /**
@@ -91,7 +99,7 @@ export class SortProductsComponent {
    */
   public onViewModeChange(viewMode: ViewMode): void {
     this.activeViewMode = viewMode;
-    this.store.dispatch(ShopActions.setViewMode({ view: viewMode }));
+    this._store.dispatch(ShopActions.changeViewMode({ viewMode: viewMode }));
   }
 
   /**
@@ -109,6 +117,6 @@ export class SortProductsComponent {
    * @param callback The callback function to assign the result.
    */
   private subscribeToStore<T>(selector: any, callback: (result: T) => void): void {
-    this.store.select(selector).pipe(takeUntilDestroyed()).subscribe(callback);
+    this._store.select(selector).pipe(takeUntilDestroyed()).subscribe(callback);
   }
 }
