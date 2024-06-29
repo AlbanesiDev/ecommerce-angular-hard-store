@@ -9878,7 +9878,7 @@
   {
     "title": "UPS Lyonn CTB-800V 800VA LCD",
     "id_product": 13471,
-    "id_category": 1300,
+    "id_category": 1400,
     "id_subcategory": 11001,
     "id_brand": 63,
     "price_special": 96160,
@@ -10800,7 +10800,7 @@
   {
     "title": "UPS Lyonn CTB-800V 800AP LED",
     "id_product": 13804,
-    "id_category": 1300,
+    "id_category": 1400,
     "id_subcategory": 11001,
     "id_brand": 63,
     "price_special": 89720,
@@ -13386,7 +13386,7 @@
   {
     "title": "Estabilizador Desktop TCA-1200N LYONN AVR",
     "id_product": 1674,
-    "id_category": 1300,
+    "id_category": 1400,
     "id_subcategory": 11000,
     "id_brand": 63,
     "price_special": 31990,
@@ -13441,7 +13441,7 @@
   {
     "title": "Estabilizador Desktop TCA-2000N LYONN AVR",
     "id_product": 3278,
-    "id_category": 1300,
+    "id_category": 1400,
     "id_subcategory": 11000,
     "id_brand": 63,
     "price_special": 45990,
@@ -33535,7 +33535,7 @@
   {
     "title": "UPS Lyonn Desire 500V 500va LCD\t",
     "id_product": 15620,
-    "id_category": 1300,
+    "id_category": 1400,
     "id_subcategory": 11001,
     "id_brand": 63,
     "price_special": 79820,
@@ -33559,7 +33559,7 @@
   {
     "title": "UPS Lyonn Desire 500V 500va LED*",
     "id_product": 15621,
-    "id_category": 1300,
+    "id_category": 1400,
     "id_subcategory": 11001,
     "id_brand": 63,
     "price_special": 71160,
@@ -33583,7 +33583,7 @@
   {
     "title": "UPS Lyonn CTB-1200V LED*",
     "id_product": 15622,
-    "id_category": 1300,
+    "id_category": 1400,
     "id_subcategory": 11001,
     "id_brand": 63,
     "price_special": 166370,
@@ -33607,7 +33607,7 @@
   {
     "title": "UPS Lyonn CTB-1200V LCD*",
     "id_product": 15623,
-    "id_category": 1300,
+    "id_category": 1400,
     "id_subcategory": 11001,
     "id_brand": 63,
     "price_special": 182710,
