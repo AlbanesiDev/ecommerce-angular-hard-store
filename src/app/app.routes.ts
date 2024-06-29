@@ -13,21 +13,6 @@ export const routes: Routes = [
     loadComponent: () => import("./features/shop/pages/shop.component"),
   },
   {
-    path: "tienda/pagina/:numberPage/:category",
-    title: "Tienda | Hard Store",
-    loadComponent: () => import("./features/shop/pages/shop.component"),
-  },
-  {
-    path: "tienda/pagina/:numberPage/:category/:subcategory",
-    title: "Tienda | Hard Store",
-    loadComponent: () => import("./features/shop/pages/shop.component"),
-  },
-  {
-    path: "tienda/pagina/:numberPage/:category/:subcategory/:brand",
-    title: "Tienda | Hard Store",
-    loadComponent: () => import("./features/shop/pages/shop.component"),
-  },
-  {
     path: "busqueda/pagina/:numberPage/:queryInput",
     title: "Busqueda | Hard Store",
     loadComponent: () => import("./features/shop/pages/shop.component"),
